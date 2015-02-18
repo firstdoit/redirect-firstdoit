@@ -10,10 +10,7 @@ var server = http.createServer(function(req, res) {
     } else {
         res.statusCode = 301;
         var hostname = "firstdoit.com";
-        if (req.headers.host.indexOf('blog') === 0) {
-            hostname = "blog.firstdoit.com";
-        }
-        var location = "http://" + hostname + parsedURL.pathname + "?utm_source=gadrme";
+        var location = "http://" + hostname + parsedURL.pathname + "?utm_source=" + req.headers.host;
         res.setHeader("Location", location);
         console.log("301 - " + location);
         res.end();
